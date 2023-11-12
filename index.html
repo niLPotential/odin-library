@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Odin Library</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -24,12 +24,23 @@
         </div>
         <fieldset>
           <legend>Already read?</legend>
-          <input type="radio" id="readTrue" name="read" value="true" />
+          <input type="radio" id="readTrue" name="read" value="true" required />
           <label for="readTrue">Yes</label>
-          <input type="radio" id="readFalse" name="read" value="false" />
+          <input
+            type="radio"
+            id="readFalse"
+            name="read"
+            value="false"
+            required
+          />
           <label for="readFalse">No</label>
         </fieldset>
-        <button type="submit" id="addBookBtn">Add Book</button>
+        <div>
+          <button value="cancel" formmethod="dialog" formnovalidate>
+            Cancel
+          </button>
+          <button value="default" id="addBookBtn">Add Book</button>
+        </div>
       </form>
     </dialog>
     <script src="script.js"></script>

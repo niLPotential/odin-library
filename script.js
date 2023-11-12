@@ -1,3 +1,8 @@
+const newBookBtn = document.querySelector("#newBookBtn");
+const addBookDialog = document.querySelector("#addBookDialog");
+
+newBookBtn.onclick = () => addBookDialog.showModal();
+
 const library = [];
 
 function Book(title, author, pages, read) {
@@ -24,6 +29,3 @@ function displayBooks() {
 
 const testBook = new Book("Title", "Author", 99, false);
 addBookToLibrary(testBook);
-
-const newBookBtn = document.querySelector("#newBookBtn");
-newBookBtn.onclick = displayBooks;
