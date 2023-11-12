@@ -21,3 +21,9 @@ function displayBooks() {
     console.log(book.info());
   }
 }
+
+const testBook = new Book("Title", "Author", 99, false);
+addBookToLibrary(testBook);
+
+const newBookBtn = document.querySelector("#newBookBtn");
+newBookBtn.onclick = displayBooks;
