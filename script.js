@@ -13,6 +13,10 @@ const addBookBtn = addBookDialog.querySelector("#addBookBtn");
 
 newBookBtn.onclick = () => addBookDialog.showModal();
 
+addBookDialog.onclose = (e) => {
+  console.log(addBookDialog.returnValue);
+};
+
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
