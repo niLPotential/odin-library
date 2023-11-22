@@ -12,17 +12,10 @@ function Book(title, author, pages, read) {
 
 const libraryArr = [];
 
-const testBook = new Book("Title", "Author", 99, false);
-addBookToLibrary(testBook);
-
-const testBtn = document.querySelector("#testBtn");
-testBtn.onclick = displayLibrary;
-
 const libraryElem = document.querySelector("#library");
 const newBookBtn = document.querySelector("#newBookBtn");
 const addBookDialog = document.querySelector("#addBookDialog");
 const addBookForm = addBookDialog.querySelector("form");
-
 const addBookBtn = addBookDialog.querySelector("#addBookBtn");
 
 newBookBtn.onclick = () => addBookDialog.showModal();
@@ -32,6 +25,7 @@ addBookDialog.onclose = (e) => {
     const data = new FormData(addBookForm);
     const newBook = newBookFromData(data);
     addBookToLibrary(newBook);
+    displayBookToLibrary(newBook);
   }
   addBookForm.reset();
 };
@@ -49,11 +43,8 @@ function addBookToLibrary(book) {
   libraryArr.push(book);
 }
 
-function displayLibrary() {
-  libraryElem.innerHTML = "";
-  for (const book of libraryArr) {
-    libraryElem.appendChild(addBookAsElement(book));
-  }
+function displayBookToLibrary(book) {
+  libraryElem.appendChild(addBookAsElement(book));
 }
 
 function addBookAsElement(book) {
