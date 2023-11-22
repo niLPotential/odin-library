@@ -1,13 +1,10 @@
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.info = function () {
-    return `${title} by ${author}, ${pages} pages, ${
-      read ? "already read" : "not read yet"
-    }`;
-  };
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
 const libraryArr = [];
@@ -26,6 +23,7 @@ addBookDialog.onclose = (e) => {
     const newBook = newBookFromData(data);
     addBookToLibrary(newBook);
     displayBookToLibrary(newBook);
+    // console.log(libraryArr);
   }
   addBookForm.reset();
 };
@@ -47,6 +45,15 @@ function displayBookToLibrary(book) {
   libraryElem.appendChild(addBookAsElement(book));
 }
 
+function deleteBook(e) {
+  const li = e.target.parentElement;
+  const index = Array.prototype.indexOf.call(libraryElem.children, li);
+
+  li.remove();
+  libraryArr.splice(index, 1);
+  // console.log(libraryArr);
+}
+
 function addBookAsElement(book) {
   const li = document.createElement("li");
   li.appendChild(createDivWithText(book.title));
@@ -55,9 +62,8 @@ function addBookAsElement(book) {
   li.appendChild(createDivWithText(book.read));
 
   const deleteBtn = document.createElement("button");
-  deleteBtn.onclick = (e) => {
-    li.remove();
-  };
+  deleteBtn.innerText = "X";
+  deleteBtn.onclick = deleteBook;
   li.appendChild(deleteBtn);
 
   return li;
