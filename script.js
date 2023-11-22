@@ -46,12 +46,20 @@ function displayBookToLibrary(book) {
 }
 
 function deleteBook(e) {
-  const li = e.target.parentElement;
-  const index = Array.prototype.indexOf.call(libraryElem.children, li);
+  const book = e.target.parentElement;
+  const index = Array.prototype.indexOf.call(libraryElem.children, book);
 
-  li.remove();
+  book.remove();
   libraryArr.splice(index, 1);
   // console.log(libraryArr);
+}
+
+function changeReadStatus(e) {
+  const book = e.target.parentElement;
+  const index = Array.prototype.indexOf.call(libraryElem.children, book);
+
+  libraryArr[index].read = e.target.checked;
+  console.log(libraryArr);
 }
 
 function addBookAsElement(book) {
@@ -59,7 +67,12 @@ function addBookAsElement(book) {
   li.appendChild(createDivWithText(book.title));
   li.appendChild(createDivWithText(book.author));
   li.appendChild(createDivWithText(book.pages));
-  li.appendChild(createDivWithText(book.read));
+
+  const readInput = document.createElement("input");
+  readInput.type = "checkbox";
+  readInput.checked = book.read === "true";
+  readInput.onchange = changeReadStatus;
+  li.appendChild(readInput);
 
   const deleteBtn = document.createElement("button");
   deleteBtn.innerText = "X";
