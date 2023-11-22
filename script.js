@@ -53,6 +53,13 @@ function addBookAsElement(book) {
   li.appendChild(createDivWithText(book.author));
   li.appendChild(createDivWithText(book.pages));
   li.appendChild(createDivWithText(book.read));
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.onclick = (e) => {
+    li.remove();
+  };
+  li.appendChild(deleteBtn);
+
   return li;
 }
 
